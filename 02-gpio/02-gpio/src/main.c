@@ -32,7 +32,7 @@
 // This part is needed to use Arduino functions but also physical pin
 // names. We are using Arduino-style just to simplify the first lab.
 //#include "Arduino.h"
-#define PB5 5          // In Arduino world, PB5 is called "13"
+#define PB5 1          // In Arduino world, PB5 is called "13"
 #define PB0 0
 #define BTN 2
 // -----
