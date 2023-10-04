@@ -124,9 +124,9 @@ A detailed description of working with input/output ports can be found in [ATmeg
    | **DDRB** | **PORTB** | **Direction** | **Internal pull-up resistor** | **Description** |
    | :-: | :-: | :-: | :-: | :-- |
    | 0 | 0 | input | no | Tri-state, high-impedance |
-   | 0 | 1 | | | |
-   | 1 | 0 | | | |
-   | 1 | 1 | | | |
+   | 0 | 1 | input | no | Tri-state, high-impedance |
+   | 1 | 0 | output | no | Output low (sink) |
+   | 1 | 1 | output | no | output high (source) |
 
 3. To control individual bits, the following binary operations are used.
    1. `|` OR
