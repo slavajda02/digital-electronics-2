@@ -81,7 +81,7 @@ ISR(TIMER0_OVF_vect)
   no_of_overflows++;
   if (no_of_overflows >= 100)
   {
-      GPIO_write_toggle(&PORTB, LED_RED);
+      GPIO_write_toggle(&PORTB, LED_GREEN);
   }
 
 }
@@ -90,8 +90,8 @@ ISR(TIMER2_OVF_vect)
   static uint8_t no_of_overflows = 0;
 
   no_of_overflows++;
-  if (no_of_overflows >= 200)
+  if (no_of_overflows >= 255)
   {
-    GPIO_write_toggle(&PORTB, LED_GREEN);
+    GPIO_write_toggle(&PORTB, LED_RED);
   }
 }
