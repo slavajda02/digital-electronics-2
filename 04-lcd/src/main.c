@@ -79,9 +79,8 @@ int main(void)
     // Configuration of 8-bit Timer/Counter2 for Stopwatch update
     // Set the overflow prescaler to 16 ms and enable interrupt
     TIM2_OVF_16MS
-    TIM2_OVF_ENABLE
-
     TIM0_OVF_16MS
+    TIM2_OVF_ENABLE
     TIM0_OVF_ENABLE
 
 
@@ -205,15 +204,29 @@ ISR(TIMER2_OVF_vect)
 ISR(TIMER0_OVF_vect)
 {
   static uint8_t no_of_overflows = 0;
-  static uint8_t symbol = 0;
   static uint8_t position = 0;
+  static uint8_t symbol[6] = {0x20, 0x00, 0x01, 0x02, 0x03, 0x04};
+  no_of_overflows++;
 
-  if(no_of_overflows > 6)
+  if(no_of_overflows >= 6)
   {
     no_of_overflows = 0;
     position++;
-    lcd_gotoxy(position,1);
-    lcd_putc(0x07);
+    if(position >= 10)
+    {
+      position = 0;
+      for(int i = 1; i <= 10; i++)
+      {
+        lcd_gotoxy(i,1);
+        lcd_putc(0x20);
+      }
+    }
+    lcd_gotoxy(position+1,1);
+    lcd_putc(symbol[no_of_overflows]);
   }
-  // WRITE YOUR CODE HERE
+  else
+  {
+    lcd_gotoxy(position+1,1);
+    lcd_putc(symbol[no_of_overflows]);
+  }
 }
